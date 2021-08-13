@@ -1,5 +1,5 @@
-import discord, tasks
-from discord.ext import commands
+import discord
+from discord.ext import commands, tasks
 import random
 from random import choice
 
