@@ -1,4 +1,4 @@
-import discord
+import discord, tasks
 from discord.ext import commands
 import random
 from random import choice
