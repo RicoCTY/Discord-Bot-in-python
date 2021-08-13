@@ -1,15 +1,11 @@
 import discord
-from discord.ext import commands, tasks
-import datetime
-import json
-
-from random import choice
+from discord.ext import commands
 import random
+from random import choice
 
-client = commands.Bot(command_prefix='s/',description="置頂留言")
+client = commands.Bot(command_prefix='?')
 
 status = ['Nothing To Do.', 'Eating ù w ú', 'Sleeping Zzz']
-
 
 @client.event
 async def on_ready():
