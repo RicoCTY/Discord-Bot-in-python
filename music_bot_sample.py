@@ -119,17 +119,6 @@ async def play(ctx):
     except:
         await ctx.send('Nothing in your queue! Use `?queue` to add a song!')
 
-@client.command(name='pause', help='This command pauses the song')
-async def pause(ctx):
-    voice_channel = server.voice_client
-
-    voice_channel.pause()
-
-@client.command(name='resume', help='This command resumes the song!')
-async def resume(ctx):
-    voice_channel = server.voice_client
-
-    voice_channel.resume()
 
 @client.command(name='stop', help='This command stops the song!')
 async def stop(ctx):
@@ -160,5 +149,30 @@ async def remove(ctx, number):
 async def view(ctx):
     await ctx.send(f'Your queue is now `{queue}!`')
 
+@client.command(name='pause', help='This command pauses the song')
+async def pause(ctx):
+    server = ctx.message.guild
+    voice_channel = server.voice_client
 
-client.run('TOKEN')
+    voice_channel.pause()
+
+
+@client.command(name='resume', help='This command resumes the song!')
+async def resume(ctx):
+    server = ctx.message.guild
+    voice_channel = server.voice_client
+
+    voice_channel.resume()
+
+@client.command()
+async def volume(ctx, volume: int):
+    """Changes the player's volume"""
+
+    if ctx.voice_client is None:
+        return await ctx.send("Not connected to a voice channel.")
+
+    ctx.voice_client.source.volume = volume / 100
+    await ctx.send(f"Changed volume to {volume}%")
+
+
+client.run('ODc1MTU3OTYwMjE5ODM2NDY2.YRRcXQ.Ie-z7cOCsUe95-hBICvOzNsSxOs')
