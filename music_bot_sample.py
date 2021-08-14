@@ -3,12 +3,8 @@ from discord.ext import commands
 from discord.voice_client import VoiceClient
 import youtube_dl
 
-
-
 youtube_dl.utils.bug_reports_message = lambda: ''
 
-
-#Music setting
 ytdl_format_options = {
     'format': 'bestaudio/best',
     'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s', 
@@ -183,7 +179,6 @@ async def playfile(ctx, *, query):
 
     await ctx.send(f'Now playing: {query}')
 
-#I have made a example for u By RicoCTY
 @commands.command()
 async def volume(self, ctx, volume: int):
     """Changes the player's volume"""
@@ -193,6 +188,5 @@ async def volume(self, ctx, volume: int):
 
     ctx.voice_client.source.volume = volume / 100
     await ctx.send(f"Changed volume to {volume}%")
-
 
 client.run('TOKEN')
