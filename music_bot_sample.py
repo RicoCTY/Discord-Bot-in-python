@@ -7,7 +7,7 @@ youtube_dl.utils.bug_reports_message = lambda: ''
 
 ytdl_format_options = {
     'format': 'bestaudio/best',
-    'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s', 
+    'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
     'restrictfilenames': True,
     'noplaylist': True,
     'nocheckcertificate': True,
@@ -50,8 +50,7 @@ def is_connected(ctx):
     voice_client = ctx.message.guild.voice_client
     return voice_client and voice_client.is_connected()
 
-
-client = commands.Bot(command_prefix='/')
+client = commands.Bot(command_prefix='?')
 
 queue = []
 loop = False
@@ -59,9 +58,6 @@ loop = False
 @client.event
 async def on_ready():
     print('Bot is online!')
-
-#music cmds
-############
 
 @client.command(name='join', help='This command makes the bot join the voice channel')
 async def join(ctx):
@@ -121,9 +117,19 @@ async def play(ctx):
         await ctx.send('**Now playing:** {}'.format(player.title))
 
     except:
-        await ctx.send('Nothing in your queue! Use `s/queue` to add a song!')
+        await ctx.send('Nothing in your queue! Use `?queue` to add a song!')
 
+@client.command(name='pause', help='This command pauses the song')
+async def pause(ctx):
+    voice_channel = server.voice_client
 
+    voice_channel.pause()
+
+@client.command(name='resume', help='This command resumes the song!')
+async def resume(ctx):
+    voice_channel = server.voice_client
+
+    voice_channel.resume()
 
 @client.command(name='stop', help='This command stops the song!')
 async def stop(ctx):
@@ -155,38 +161,4 @@ async def view(ctx):
     await ctx.send(f'Your queue is now `{queue}!`')
 
 
-@client.command(name='pause', help='This command pauses the song')
-async def pause(ctx):
-    server = ctx.message.guild
-    voice_channel = server.voice_client
-
-    voice_channel.pause()
-
-
-@client.command(name='resume', help='This command resumes the song!')
-async def resume(ctx):
-    server = ctx.message.guild
-    voice_channel = server.voice_client
-
-    voice_channel.resume()
-
-@client.command()
-async def playfile(ctx, *, query):
-    """Plays a file from the local filesystem"""
-
-    source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(query))
-    ctx.voice_client.play(source, after=lambda e: print(f'Player error: {e}') if e else None)
-
-    await ctx.send(f'Now playing: {query}')
-
-@commands.command()
-async def volume(self, ctx, volume: int):
-    """Changes the player's volume"""
-
-    if ctx.voice_client is None:
-        return await ctx.send("Not connected to a voice channel.")
-
-    ctx.voice_client.source.volume = volume / 100
-    await ctx.send(f"Changed volume to {volume}%")
-
-client.run('TOKEN')
+client.run('ODc1MTU3OTYwMjE5ODM2NDY2.YRRcXQ.mK8wyGNRUXjEKSzj_ebil1yIeA8')
