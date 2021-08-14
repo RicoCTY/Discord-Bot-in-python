@@ -161,4 +161,4 @@ async def view(ctx):
     await ctx.send(f'Your queue is now `{queue}!`')
 
 
-client.run('ODc1MTU3OTYwMjE5ODM2NDY2.YRRcXQ.mK8wyGNRUXjEKSzj_ebil1yIeA8')
+client.run('TOKEN')
