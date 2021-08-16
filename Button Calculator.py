@@ -81,4 +81,4 @@ async def calc(ctx):
 
 
 
-client.run('ODc1MTU3OTYwMjE5ODM2NDY2.YRRcXQ.Ie-z7cOCsUe95-hBICvOzNsSxOs')
+client.run('TOKEN')
