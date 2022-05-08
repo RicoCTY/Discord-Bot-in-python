@@ -1,2 +1,2 @@
 # Discord-Bot-in-python
-Some DC coding
+Some discord bot programs 
